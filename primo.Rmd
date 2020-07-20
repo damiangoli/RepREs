@@ -3,13 +3,13 @@ title: "Analyzing Activity Monitoring Device Data"
 author: "Damian"
 date: "7/15/2020"
 output:
-  pdf_document: default
-  html_document: default
----
+    html_document:
+    keep_md:true
+    ---
 
 Plotting the mean total number of steps taken per day
 
-```{r P1, include=FALSE}
+```{r P1, include=TRUE}
 knitr::opts_chunk$set(echo = TRUE)
 
 # Read data
@@ -21,13 +21,13 @@ hist(steps_day$steps, main = paste("Total Steps Each Day"), col="gray",xlab="Num
 
 Mean and Median
 
-```{r P2, include=FALSE}
+```{r P2, include=TRUE}
 knitr::opts_chunk$set(echo = TRUE)
 repmean <- mean(steps_day$steps)
 repmean
 ```
 
-```{r P2.1, include=FALSE}
+```{r P2.1, include=TRUE}
 knitr::opts_chunk$set(echo = TRUE)
 
 repmedian <- median(steps_day$steps)
@@ -36,7 +36,7 @@ repmedian
 
 Plotting the average daily activity pattern
 
-```{r P3, include=FALSE}
+```{r P3, include=TRUE}
 knitr::opts_chunk$set(echo = TRUE)
 
 steps_interval <- aggregate(steps ~ interval, repdata, mean)
@@ -45,7 +45,7 @@ plot(steps_interval$interval,steps_interval$steps, type="l", xlab="Interval", yl
 
 Max Interval revealed
 
-```{r P4, include=FALSE}
+```{r P4, include=TRUE}
 knitr::opts_chunk$set(echo = TRUE)
 
 max_interval <- steps_interval[which.max(steps_interval$steps),1]
@@ -54,7 +54,7 @@ max_interval
 
 Calculate and report the total number of missing values in the dataset
 
-```{r P5, include=FALSE}
+```{r P5, include=TRUE}
 knitr::opts_chunk$set(echo = TRUE)
 
 NATot <- sum(!complete.cases(repdata))
@@ -64,7 +64,7 @@ NATot
 Using Mean for the day compute missing values and creating a new dataset.
 Making the histogram of the total number of steps taken each day.
 
-```{r P6, include=FALSE}
+```{r P6, include=TRUE}
 knitr::opts_chunk$set(echo = TRUE)
 
 StepsAverage <- aggregate(steps ~ interval, data = repdata, FUN = mean)
@@ -92,7 +92,7 @@ legend("topright", c("Imputed", "Non-imputed"), col=c("blue", "gray"), lwd=10)
 
 Calculating the mean and median total number of steps taken per day.
 
-```{r P7, include=FALSE}
+```{r P7, include=TRUE}
 knitr::opts_chunk$set(echo = TRUE)
 
 repmeantotal <- mean(TotalSteps$steps)
@@ -100,7 +100,7 @@ repmeantotal
 ```
 
 
-```{r P8, include=FALSE}
+```{r P8, include=TRUE}
 knitr::opts_chunk$set(echo = TRUE)
 
 repmediantotal <- median(TotalSteps$steps)
@@ -109,7 +109,7 @@ repmediantotal
 
 Showing if median and mean values differ from the estimates from the first part.
 
-```{r P9, include=FALSE}
+```{r P9, include=TRUE}
 knitr::opts_chunk$set(echo = TRUE)
 
 mediandiff <- repmediantotal - repmedian
@@ -122,7 +122,7 @@ The mean is the same and the median has a variance (Var:1.1886792).
 
 Plotting differences in activity patterns between weekdays and weekends.
 
-```{r P10, include=FALSE}
+```{r P10, include=TRUE}
 knitr::opts_chunk$set(echo = TRUE)
 
 weekdays <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
